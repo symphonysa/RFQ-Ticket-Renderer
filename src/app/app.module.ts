@@ -19,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'controller',      component: ControllerComponent },
 ];
 
+
 @NgModule({
   declarations: [
     AppComponent,
