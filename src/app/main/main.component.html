@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+    <div class="card border-primary">
+      <div class="card-header">{{header}}</div>
+      
+      <div class="card-body">
+          <div  *ngIf="RFQ.status==='new'|| RFQ.status==='priced'">
+              <div class="form-group row">
+                  <label class="col-4 col-form-label col-form-label-sm" for="exampleInputEmail1">Action</label>
+                  <div class="col-2" *ngIf="RFQ.status==='new'">
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" class="form-check-input" name="action" value="BUY"  [(ngModel)]="RFQ.action">
+                              Buy
+                          </label>
+                      </div>
+                      <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" class="form-check-input" name="action" value="SELL"  [(ngModel)]="RFQ.action">
+                              Sell
+                          </label>
+                      </div>
+                  </div>
+                  <div class="col-8" *ngIf="RFQ.status==='priced'">
+                      <input class="form-control form-control-sm" id="action" placeholder="Enter action" [(ngModel)]="RFQ.action" disabled>
+                  </div>
+              </div>
+                <div class="form-group row">
+                  <label class="col-4 col-form-label col-form-label-sm" for="exampleInputEmail1">Quantity</label>
+                  <div class="col-8">
+                      <input class="form-control form-control-sm" id="numShares" aria-describedby="emailHelp" placeholder="Enter quantity" [(ngModel)]="RFQ.numShares" [disabled]="RFQ.status==='priced'">
+                  </div>  
+              </div>
+                <div class="form-group row">
+                  <label class="col-4 col-form-label col-form-label-sm" for="exampleInputEmail1">Product</label>
+                  <div class="col-8">
+                      <input class="form-control form-control-sm" id="product" aria-describedby="emailHelp" placeholder="Enter product" [(ngModel)]="RFQ.symbol" [disabled]="RFQ.status==='priced'">
+                  </div>
+                </div>
+                <div class="form-group row" *ngIf="RFQ.status==='priced'">
+                    <label class="col-4 col-form-label col-form-label-sm" for="exampleInputEmail1">Price</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" id="price" placeholder="Enter price" [(ngModel)]="RFQ.price" [disabled]="RFQ.status==='priced'">
+                    </div>
+                  </div>
+                <button id="submit" class="btn btn-primary btn-sm float-right" (click)=submit() *ngIf="RFQ.status==='new'" >Submit</button>
+                <button id="confirm" class="btn btn-primary btn-sm float-right" (click)=confirm() *ngIf="RFQ.status==='priced'" >Create Order</button>
+            </div>
+            <div  *ngIf="RFQ.status==='pending'">
+                <p>{{RFQ.action}} {{RFQ.numShares}} ${{RFQ.symbol}}</p>
+            </div>
+            <div  *ngIf="RFQ.status==='confirmed'">
+                <p>{{RFQ.action}} {{RFQ.numShares}} {{RFQ.symbol}} @ {{RFQ.price}}</p>
+            </div>
+            <div  *ngIf="RFQ.status==='pricing'">
+                <p>{{RFQ.action}} {{RFQ.numShares}} {{RFQ.symbol}}</p>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+

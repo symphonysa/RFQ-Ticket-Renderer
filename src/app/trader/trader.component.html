@@ -1,0 +1,26 @@
+
+<div class="card border-primary">
+    <div class="card-header">Inbound RFQs Pending</div>
+    <div class="card-body">
+      <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Action</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Start Conversation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let RFQ of RFQpending" [ngClass]="{'table-success': RFQ.id==last.id }">
+              <td>{{RFQ.senderCompany}}</td>
+              <td>{{RFQ.action}}</td>
+              <td>{{RFQ.symbol}}</td>
+              <td>{{RFQ.numShares}}</td>
+              <td><button class="btn btn-primary btn-sm" (click)="startPricing(RFQ)">Start Pricing</button></td>
+            </tr>
+          </tbody>
+        </table> 
+        </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+      <div class="card border-primary">
+            <div class="card-header" *ngIf="RFQ.status==='pricing'">Pricing for RFQ from {{RFQ.senderCompany}}</div>
+            <div class="card-header" *ngIf="RFQ.status==='priced'">RFQ from {{RFQ.senderCompany}} was priced</div>
+        <div class="card-body">
+            <div *ngIf="RFQ.status==='pricing'">
+                <div class="form-group row">
+                    <label class="col-4 col-form-label col-form-label-sm" >Action</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" id="action" placeholder="Enter action" [(ngModel)]="RFQ.action" disabled>
+                    </div>
+                </div>
+                  <div class="form-group row">
+                    <label class="col-4 col-form-label col-form-label-sm" >Quantity</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" id="numShares" placeholder="Enter quantity" [(ngModel)]="RFQ.numShares" disabled>
+                    </div>  
+                </div>
+                  <div class="form-group row">
+                    <label class="col-4 col-form-label col-form-label-sm" >Product</label>
+                    <div class="col-8">
+                        <input class="form-control form-control-sm" id="product" placeholder="Enter product" [(ngModel)]="RFQ.symbol" disabled>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                      <label class="col-4 col-form-label col-form-label-sm">Price</label>
+                      <div class="col-8">
+                          <input class="form-control form-control-sm" id="price" placeholder="Enter price" [(ngModel)]="RFQ.price">
+                      </div>
+                    </div>
+                  <button id="submit" class="btn btn-primary btn-sm float-right" (click)=submit()>Submit</button>
+              </div>
+              <div *ngIf="RFQ.status==='priced'">
+                  <p>{{RFQ.action}} {{RFQ.numShares}} {{RFQ.symbol}} @ {{RFQ.price}}</p>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
